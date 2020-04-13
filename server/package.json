@@ -9,11 +9,15 @@
   "author": "David",
   "license": "ISC",
   "dependencies": {
+    "@types/twilio": "^2.11.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "twilio": "^3.42.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.6",
+    "@types/morgan": "^1.9.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
   }
