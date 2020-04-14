@@ -1,0 +1,21 @@
+{
+  "name": "client-connector",
+  "version": "1.0.0",
+  "description": "An application to contact users via SMS using Twilio APIs",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd server && npm install && cd ../client && npm install",
+    "start": "cd server && npm start",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BOLT04/client-connector.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BOLT04/client-connector/issues"
+  },
+  "homepage": "https://github.com/BOLT04/client-connector#readme"
+}
