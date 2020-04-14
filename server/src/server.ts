@@ -4,6 +4,7 @@ import { settings } from './settings'
 import { sendSmsHandler } from './api/send-sms.handler'
 
 const app = express()
+app.set('x-powered-by', false)
 
 // Middleware
 app.use(morgan('combined'))
