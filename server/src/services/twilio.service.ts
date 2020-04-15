@@ -1,7 +1,8 @@
-import { settings } from '../settings'
-import twilio from 'twilio'
+import { settings } from "../settings";
+import twilio from "twilio";
 
 const client = twilio(settings.twilio.accountSid, settings.twilio.authToken);
+const lookups = client.lookups.v1;
 
 /**
  * Send an SMS to a phone number with the given body.
@@ -11,11 +12,36 @@ const client = twilio(settings.twilio.accountSid, settings.twilio.authToken);
  * @link https://www.twilio.com/docs/glossary/what-e164
  */
 export async function sendMessage(body: string, to: string) {
-  // TODO: validate "to" string format
-  const rsp = await client.messages.create({
-    body,
-    from: settings.twilio.fromPhomeNumber,
-    to
-  })
-  console.log(`Message sent [sid:${rsp.sid}]`)
+  if (!verifyPhoneNumber(to)) throw new InvalidPhoneNumberError();
+
+  try {
+    const rsp = await client.messages.create({
+      body,
+      from: settings.twilio.fromPhomeNumber,
+      to,
+    });
+    console.log(`Message sent [sid:${rsp.sid}]`);
+  } catch (error) {
+    console.error("An error occurred while sending a message");
+
+    if (error.status === 400) throw new InvalidPhoneNumberError();
+    else throw error;
+  }
+}
+
+export function verifyPhoneNumber(phoneNumber: string) {
+  return lookups
+    .phoneNumbers(phoneNumber)
+    .fetch()
+    .then(
+      (numberData) => true,
+      (err) => false
+    );
+}
+
+export class InvalidPhoneNumberError extends Error {
+  constructor(message = "Invalid phone number") {
+    super(message);
+    this.name = "InvalidPhoneNumberError";
+  }
 }

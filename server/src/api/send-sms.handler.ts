@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { sendMessage } from "../services/twilio.service";
+import { sendMessage, InvalidPhoneNumberError } from "../services/twilio.service";
 
 export async function sendSmsHandler(req: Request, res: Response) {
   try {
@@ -7,28 +7,32 @@ export async function sendSmsHandler(req: Request, res: Response) {
     const phone = req.body.phone;
 
     // Validate input
-    if (!msg) {
-      return res
-        .status(400)
-        .json({
-          title: "Invalid Parameters",
-          detail: `'msg' parameter is required`,
-          status: 400,
-        });
-    }
-    if (!phone) {
-      return res
-        .status(400)
-        .json({
-          title: "Invalid Parameters",
-          detail: `'phone' parameter is required`,
-          status: 400,
-        });
-    }
+    if (!msg)
+      return sendBadRequest(
+        res,
+        "Invalid Parameters",
+        `'msg' parameter is required`
+      );
+    if (!phone)
+      return sendBadRequest(
+        res,
+        "Invalid Parameters",
+        `'phone' parameter is required`
+      );
 
-    await sendMessage(msg, phone);
-
-    return res.sendStatus(200);
+    try {
+      await sendMessage(msg, phone);
+      return res.sendStatus(200);
+    } catch (error) {
+      if (error.name === "InvalidPhoneNumberError") {
+        return sendBadRequest(
+          res,
+          "Invalid Parameters",
+          `'phone' is an invalid number`
+        );
+    }
+      else throw error;
+    }
   } catch (error) {
     console.log("ERROR in sendSmsHandler");
     console.error(error);
@@ -36,4 +40,13 @@ export async function sendSmsHandler(req: Request, res: Response) {
       .status(500)
       .json({ title: "Failed to send message", status: 500 });
   }
+}
+
+function sendBadRequest(res: Response, title: string, detail?: string) {
+  //TODO: move this function elsewhere
+  return res.status(400).json({
+    title,
+    detail,
+    status: 400,
+  });
 }
