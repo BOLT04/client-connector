@@ -7,13 +7,13 @@ export async function sendSmsHandler(req: Request, res: Response) {
     const phone = req.body.phone;
 
     // Validate input
-    if (!msg)
+    if (!msg || typeof msg !== 'string')
       return sendBadRequest(
         res,
         "Invalid Parameters",
         `'msg' parameter is required`
       );
-    if (!phone)
+    if (!phone || typeof msg !== 'string')
       return sendBadRequest(
         res,
         "Invalid Parameters",
