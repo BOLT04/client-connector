@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install": "cd server && npm install && cd ../client && npm install",
-    "start": "cd server && npm start",
+    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "build": "cd client && npm run build"
   },
   "repository": {
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/BOLT04/client-connector/issues"
   },
-  "homepage": "https://github.com/BOLT04/client-connector#readme"
+  "homepage": "https://github.com/BOLT04/client-connector#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  }
 }
