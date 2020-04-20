@@ -10,6 +10,7 @@ import PhoneNumberInput from "react-phone-number-input";
 export function PhoneInput({ value, onChange }) {
   return (
     <PhoneNumberInput
+      className="phone-input"
       placeholder="Enter phone number"
       value={value}
       onChange={handleChange}
