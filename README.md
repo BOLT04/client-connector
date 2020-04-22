@@ -1,10 +1,13 @@
-# client-connector
-An application to contact users via SMS using Twilio APIs
-This project is for an hackathon submission. You can find here the [announcement post](https://twil.io/dev-hack-april).
+# Client Connector
+A web application to contact users via SMS using Twilio APIs
+
+> :information_source: This project is for a hackathon submission. You can find the [announcement post](https://twil.io/dev-hack-april) and my [documented journey of this project](https://dev.to/bolt04/my-first-hackathon-141d) on [dev.to](https://dev.to/).
 
 ## Built with
 - Node.js web server using [Express.js](https://npm.im/express) and [Typescript](https://www.typescriptlang.org/)
+- [Programmable SMS Twilio API](https://www.twilio.com/docs/sms)
 - React and Javascript for the client-side
+- Deployed with [Heroku](https://www.heroku.com/). You can check out the live application [here](https://client-connector.herokuapp.com/)
 
 ## Features
 - Send a message to a person's phone using SMS
