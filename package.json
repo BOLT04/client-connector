@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "install": "cd server && npm install && cd ../client && npm install",
+    "postinstall": "cd server && npm install --only=dev",
     "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "build": "cd client && npm run build"
   },
