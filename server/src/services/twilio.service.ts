@@ -1,8 +1,10 @@
 import { settings } from "../settings";
 import twilio from "twilio";
 
-const client = twilio(settings.twilio.accountSid, settings.twilio.authToken);
+const { accountSid, authToken } = settings.twilio;
+const client = twilio(accountSid, authToken);
 const lookups = client.lookups.v1;
+const { ClientCapability } = twilio.jwt;
 
 /**
  * Send an SMS to a phone number with the given body.
@@ -37,6 +39,22 @@ export function verifyPhoneNumber(phoneNumber: string) {
       (numberData) => true,
       (err) => false
     );
+}
+
+/**
+ * @returns {string} The generated JWT token 
+ */
+export function generateToken(): string {
+  const TTL_10_MINUTES = 600
+  const capability = new ClientCapability({ accountSid, authToken, ttl: TTL_10_MINUTES });
+  capability.addScope(
+    new ClientCapability.OutgoingClientScope({
+      applicationSid: accountSid,
+    })
+  );
+  capability.addScope(new ClientCapability.IncomingClientScope('test client'));
+
+  return capability.toJwt();
 }
 
 export class InvalidPhoneNumberError extends Error {
