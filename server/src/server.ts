@@ -4,6 +4,7 @@ import path from 'path'
 import { settings } from './settings'
 import { sendSmsHandler } from './api/send-sms.handler'
 import { verifyPhoneNumberHandler } from './api/verify-phone-number.handler'
+import { createTokenHandler } from './api/voice/create-token.handler'
 
 const app = express()
 app.set('x-powered-by', false)
@@ -12,8 +13,10 @@ app.set('x-powered-by', false)
 app.use(morgan('combined'))
 app.use(express.json())
 
-app.post('/send-sms', sendSmsHandler)
+// API routes
+app.post('/send-sms', sendSmsHandler) // TODO: move these 2 routes under "/sms" prefix, to separate routes by features
 app.get('/check/:number', verifyPhoneNumberHandler)
+app.post('/voice/token', createTokenHandler)
 
 const { port, isProd } = settings
 if (isProd) {
