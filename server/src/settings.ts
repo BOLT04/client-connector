@@ -8,6 +8,7 @@ export const settings = {
   twilio: {
     accountSid: process.env.TWILIO_ACCOUNT_SID || 'fake-sid',
     authToken: process.env.TWILIO_AUTH_TOKEN || 'fake-token',
-    fromPhomeNumber: process.env.TWILIO_FROM_PHONE_NUMBER || ''
+    fromPhomeNumber: process.env.TWILIO_FROM_PHONE_NUMBER || '',
+    twimlAppSid: process.env.TWILIO_TWIML_APP_SID || ''
   }
 }

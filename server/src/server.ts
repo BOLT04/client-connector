@@ -1,9 +1,11 @@
 import express from 'express'
 import morgan from 'morgan'
+import twilio from "twilio";
 import { settings } from './settings'
 import { sendSmsHandler } from './api/send-sms.handler'
 import { verifyPhoneNumberHandler } from './api/verify-phone-number.handler'
 import { createTokenHandler } from './api/voice/create-token.handler'
+import { connectCallHandler, createCallHandler } from './api/voice/connect-call.handler'
 
 const app = express()
 app.set('x-powered-by', false)
@@ -16,6 +18,8 @@ app.use(express.json())
 app.post('/send-sms', sendSmsHandler) // TODO: move these 2 routes under "/sms" prefix, to separate routes by features
 app.get('/check/:number', verifyPhoneNumberHandler)
 app.post('/voice/token', createTokenHandler)
+app.post('/voice/calls/connect', twilio.webhook({ validate: false }), connectCallHandler)
+app.post('/voice/calls/create', twilio.webhook({ validate: false }), createCallHandler)
 
 const { port } = settings
 app.listen(port, () => {

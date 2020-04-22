@@ -42,19 +42,43 @@ export function verifyPhoneNumber(phoneNumber: string) {
 }
 
 /**
- * @returns {string} The generated JWT token 
+ * @returns {string} The generated JWT token
  */
 export function generateToken(): string {
-  const TTL_10_MINUTES = 600
-  const capability = new ClientCapability({ accountSid, authToken, ttl: TTL_10_MINUTES });
+  const TTL_10_MINUTES = 600;
+  const capability = new ClientCapability({
+    accountSid,
+    authToken,
+    ttl: TTL_10_MINUTES,
+  });
   capability.addScope(
     new ClientCapability.OutgoingClientScope({
-      applicationSid: accountSid,
+      applicationSid: settings.twilio.twimlAppSid,
     })
   );
-  capability.addScope(new ClientCapability.IncomingClientScope('test client'));
+  capability.addScope(new ClientCapability.IncomingClientScope("test client"));
 
   return capability.toJwt();
+}
+
+const { VoiceResponse } = twilio.twiml;
+
+export function connectCall(phoneNumber: string) {
+  const twiml = new VoiceResponse();
+  const dial = twiml.dial({ callerId: settings.twilio.fromPhomeNumber });
+  dial.number(phoneNumber);
+  return twiml.toString()
+}
+
+export async function createCall(phoneNumber: string) {
+  const call = await client.calls
+  .create({
+     url: 'https://241577a1.ngrok.io/voice/calls/connect',
+     to: phoneNumber,
+     from: settings.twilio.fromPhomeNumber
+   })
+
+  console.log('call sid', call.sid);
 }
 
 export class InvalidPhoneNumberError extends Error {
