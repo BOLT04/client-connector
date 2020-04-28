@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { sendMessage, InvalidPhoneNumberError } from "../services/twilio.service";
+import { sendMessage } from "../services/twilio.service";
 
 export async function sendSmsHandler(req: Request, res: Response) {
   try {
@@ -43,7 +43,6 @@ export async function sendSmsHandler(req: Request, res: Response) {
 }
 
 function sendBadRequest(res: Response, title: string, detail?: string) {
-  //TODO: move this function elsewhere
   return res.status(400).json({
     title,
     detail,

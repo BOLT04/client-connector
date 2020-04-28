@@ -14,9 +14,8 @@ app.use(morgan('combined'))
 app.use(express.json())
 
 // API routes
-app.post('/send-sms', sendSmsHandler) // TODO: move these 2 routes under "/sms" prefix, to separate routes by features
+app.post('/send-sms', sendSmsHandler)
 app.get('/check/:number', verifyPhoneNumberHandler)
-app.post('/voice/token', createTokenHandler)
 
 const { port, isProd } = settings
 if (isProd) {
