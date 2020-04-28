@@ -32,7 +32,7 @@ export function SendSmsForm() {
         )}
       </Form.Field>
 
-      <Button type="submit" disabled={phoneError}>Submit</Button>
+      <Button type="submit" primary disabled={phoneError}>Submit</Button>
     </Form>
   );
 

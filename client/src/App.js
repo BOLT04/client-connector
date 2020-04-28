@@ -1,11 +1,20 @@
 import React from "react";
-import { Container, Header, Icon } from "semantic-ui-react";
+import { Container, Header, Icon, Image } from "semantic-ui-react";
 import { SendSmsForm } from "./sms/SendSmsForm";
-import { VoiceCallForm } from "./voice/VoiceCallForm";
+import logo from './logo.png'
+import { Footer } from "./Footer";
+import './App.css'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
+    <div className="app">
+      <header className="app-header">
+        <Header as="h2">
+          <Image src={logo} size='small' />
+          Client Connector
+        </Header>
+      </header>
+
       <Container>
         <Header as="h2" icon>
           <Icon name="envelope" color='orange' />
@@ -15,19 +24,9 @@ function App() {
           </Header.Subheader>
         </Header>
         <SendSmsForm />
-
-        <Header as="h2" icon>
-          <Icon name="phone" color='green' />
-          Make a Phone Call
-          <Header.Subheader>
-            Start a conversation with a user and keep in touch with your
-            clients.
-          </Header.Subheader>
-        </Header>
-        <VoiceCallForm />
       </Container>
+     
+      <Footer />
     </div>
   );
 }
-
-export default App;
