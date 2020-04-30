@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import { init } from './twilio';
-init()
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -7,3 +7,11 @@
 .phone-input-wrapper .phone-icon {
   border-radius: 0 5px 5px 0;
 }    
+
+.phone-input-wrapper .phone-icon.hangup {
+  border-radius: 5px;
+}    
+.phone-input-wrapper .phone-icon.hangup i {
+  transform: rotate(-134deg);
+}    
+
