@@ -1,4 +1,7 @@
 # Client Connector
+
+![submission cover](/.github/submission-cover.PNG)
+
 A web application to contact users via SMS using Twilio APIs
 
 > :information_source: This project is for a hackathon submission. You can find the [announcement post](https://twil.io/dev-hack-april) and my [documented journey of this project](https://dev.to/bolt04/my-first-hackathon-141d) on [dev.to](https://dev.to/).
