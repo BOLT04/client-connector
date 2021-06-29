@@ -31,7 +31,7 @@ if (isProd) {
 }
 
 // Handle process shutdown: https://help.heroku.com/D5GK0FHU/how-can-my-node-app-gracefully-shutdown-when-receiving-sigterm
-function shutdown(signal: string) {
+function shutdown(signal: string): NodeJS.SignalsListener {
   return (error: any) => {
     console.log(`${signal}...`)
     if (error) console.error(error.stack || error);

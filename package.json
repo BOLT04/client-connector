@@ -7,7 +7,9 @@
     "install": "cd server && npm install && cd ../client && npm install",
     "postinstall": "cd server && npm install --only=dev",
     "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "a": "echo \"a\"",
+    "b": "echo \"b\""
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,13 @@
   "homepage": "https://github.com/BOLT04/client-connector#readme",
   "dependencies": {
     "concurrently": "^5.1.0"
+  },
+  "devDependencies": {
+    "husky": "^6.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo \"[Husky] pre-commit\""
+    }
   }
 }
