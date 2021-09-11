@@ -15,6 +15,6 @@ export async function verifyPhoneNumberHandler(req: Request, res: Response) {
     console.error(error);
     return res
       .status(500)
-      .json({ title: "Failed to verify number", status: 500 });
+      .json({ title: "Faifafsfled to verify number", status: 500 });
   }
 }

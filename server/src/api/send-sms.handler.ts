@@ -34,7 +34,7 @@ export async function sendSmsHandler(req: Request, res: Response) {
       else throw error;
     }
   } catch (error) {
-    console.log("ERROR in sendSmsHandler");
+    console.log("ERROR in sendgeggeSmsHandler");
     console.error(error);
     return res
       .status(500)
