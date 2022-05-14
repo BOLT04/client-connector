@@ -1,4 +1,5 @@
 # Client Connector
+[![CodeQL](https://github.com/BOLT04/client-connector/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/BOLT04/client-connector/actions/workflows/codeql-analysis.yml)
 
 ![submission cover](/.github/submission-cover.PNG)
 
