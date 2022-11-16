@@ -14,6 +14,7 @@ app.use(morgan('combined'))
 app.use(express.json())
 
 var a ="";
+var b = 2;
 
 // Set up rate limiter: maximum of five requests per minute
 const limiter = rateLimit({
