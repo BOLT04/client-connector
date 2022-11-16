@@ -17,7 +17,7 @@ A web application to contact users via SMS using Twilio APIs
 - Send a message to a person's phone using SMS
 
 ## Set up
-test
+
 
 ### Requirements
 
