@@ -1,4 +1,7 @@
-node {
+pipeline {
+  tools {
+    nodejs "14.0.0"
+  }
   stage('SCM') {
     checkout scm
   }
