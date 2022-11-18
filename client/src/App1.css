@@ -1,0 +1,15 @@
+.app .app-header {
+    height: 80px;
+    padding: 20px 40px;
+    background-color: #252525;
+    color: white;
+}
+.app .app-header h2.ui.header {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.app .ui.container {
+    padding-top: 20px;
+}
