@@ -3,9 +3,7 @@ node {
     checkout scm
   }
   stage('install') {
-    steps {
-      sh 'npm install' 
-    }
+      sh 'npm install'
   }
   stage('SonarQube Analysis') {
     def scannerHome = tool 'SonarScannerTest';
