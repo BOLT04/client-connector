@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/BOLT04/client-connector#readme",
   "dependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^8.2.0"
   },
   "devDependencies": {
     "husky": "^6.0.0"
